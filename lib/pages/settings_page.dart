@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:states_bloc/pages/drawer_menu.dart';
-import 'package:states_bloc/providers/slide_model.dart';
-import 'package:states_bloc/providers/text_model.dart';
+import 'package:states_bloc/providers/slide_state.dart';
+import 'package:states_bloc/providers/text_state.dart';
 
 class SettingsPage extends StatefulWidget {
   static const routeName = '/settings';
@@ -16,7 +16,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextModel>(
+    return Consumer<TextState>(
       builder: (context, textModel, child) {
         return Scaffold(
           appBar: AppBar(
@@ -37,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Theme.of(context).textTheme.displayLarge!.fontSize),
                 ),
               ),
-              Consumer<SlideModel>(builder: (context, slideModel, child) {
+              Consumer<SlideState>(builder: (context, slideModel, child) {
                 return Slider(
                     min: 0.5,
                     value: slideModel.slider,
@@ -101,8 +101,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Text(
       'Bold',
       style: getStyle(
-        Provider.of<TextModel>(context, listen: false).fontSize,
-        Provider.of<TextModel>(context, listen: false).bold,
+        Provider.of<TextState>(context, listen: false).fontSize,
+        Provider.of<TextState>(context, listen: false).bold,
         false,
       ),
     );

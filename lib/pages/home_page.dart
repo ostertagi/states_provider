@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:provider/provider.dart';
 import 'package:states_bloc/pages/drawer_menu.dart';
-import 'package:states_bloc/providers/text_model.dart';
+import 'package:states_bloc/providers/text_state.dart';
 
 const kAppTitle = 'States by Provider';
 const kStateType = '...';
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextModel>(
+    return Consumer<TextState>(
       builder: (context, textModel, child) {
         return Scaffold(
           appBar: AppBar(

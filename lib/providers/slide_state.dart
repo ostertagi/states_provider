@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:states_bloc/common/service_locator.dart';
-import 'package:states_bloc/providers/text_model.dart';
+import 'package:states_bloc/providers/text_state.dart';
 
-class SlideModel extends ChangeNotifier {
+class SlideState extends ChangeNotifier {
+  TextState textState;
+
   double _slider = 0.5;
 
   double get slider => _slider;
+
+  SlideState(this.textState);
 
   set slider(double value) {
     _slider = value;
@@ -14,7 +17,7 @@ class SlideModel extends ChangeNotifier {
 
   updateSlider(double value) {
     _slider = value;
-    locator<TextModel>().fontSize = _slider * 30;
+    textState.fontSize = _slider * 30;
     notifyListeners();
   }
 }

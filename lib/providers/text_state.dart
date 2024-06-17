@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TextModel extends ChangeNotifier {
+class TextState extends ChangeNotifier {
   late double _fontSize;
   late bool _bold;
   late bool _italic;
 
-  TextModel() {
+  TextState() {
     print("abdelghani from TExtMdeol");
     _fontSize = 12;
     _bold = false;

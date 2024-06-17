@@ -5,7 +5,7 @@ import 'package:states_bloc/common/service_locator.dart';
 import 'package:states_bloc/pages/about_page.dart';
 import 'package:states_bloc/pages/home_page.dart';
 import 'package:states_bloc/pages/settings_page.dart';
-import 'package:states_bloc/providers/text_model.dart';
+import 'package:states_bloc/providers/text_state.dart';
 
 const kTitle = 'Bloc';
 
@@ -14,7 +14,7 @@ class DrawerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextModel>(
+    return Consumer<TextState>(
       builder: (context, textModel, child) {
         return Drawer(
           child: ListView(
