@@ -15,11 +15,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<TextModel>(
-          create: (context) => locator<TextModel>(),
-        ),
+            create: (context) => locator<TextModel>()),
         ChangeNotifierProvider<SlideModel>(
-          create: (context) => locator<SlideModel>(),
-        ),
+            create: (context) => locator<SlideModel>()),
       ],
       child: MaterialApp(
         navigatorKey: locator<NavigateService>().navKey,

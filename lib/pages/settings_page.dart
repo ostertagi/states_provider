@@ -4,11 +4,16 @@ import 'package:states_bloc/pages/drawer_menu.dart';
 import 'package:states_bloc/providers/slide_model.dart';
 import 'package:states_bloc/providers/text_model.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   static const routeName = '/settings';
 
   const SettingsPage({super.key});
 
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TextModel>(
@@ -50,14 +55,7 @@ class SettingsPage extends StatelessWidget {
                         textModel.bold = newVal;
                       },
                     ),
-                    Text(
-                      'Bold',
-                      style: getStyle(
-                        textModel.fontSize,
-                        textModel.bold,
-                        false,
-                      ),
-                    ),
+                    getBold(),
                   ],
                 ),
               ),
@@ -85,6 +83,28 @@ class SettingsPage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  // Text getBold(TextModel textModel) {
+  //   return Text(
+  //                   'Bold',
+  //                   style: getStyle(
+  //                     textModel.fontSize,
+  //                     textModel.bold,
+  //                     false,
+  //                   ),
+  //                 );
+  // }
+
+  Text getBold() {
+    return Text(
+      'Bold',
+      style: getStyle(
+        Provider.of<TextModel>(context, listen: false).fontSize,
+        Provider.of<TextModel>(context, listen: false).bold,
+        false,
+      ),
     );
   }
 
