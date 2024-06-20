@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:states_bloc/pages/drawer_menu.dart';
-import 'package:states_bloc/providers/slide_state.dart';
-import 'package:states_bloc/providers/text_state.dart';
+import 'package:states_bloc/providers/app_state.dart';
 
 class SettingsPage extends StatefulWidget {
   static const routeName = '/settings';
@@ -16,8 +15,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextState>(
-      builder: (context, textModel, child) {
+    return Consumer<AppState>(
+      builder: (context, state, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.teal,
@@ -31,28 +30,26 @@ class _SettingsPageState extends State<SettingsPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, top: 20),
                 child: Text(
-                  'Font Size: ${textModel.fontSize.toInt()}',
+                  'Font Size: ${state.textState.fontSize.toInt()}',
                   style: TextStyle(
                       fontSize:
                           Theme.of(context).textTheme.displayLarge!.fontSize),
                 ),
               ),
-              Consumer<SlideState>(builder: (context, slideModel, child) {
-                return Slider(
-                    min: 0.5,
-                    value: slideModel.slider,
-                    onChanged: (newVal) {
-                      slideModel.updateSlider(newVal);
-                    });
-              }),
+              Slider(
+                  min: 0.5,
+                  value: state.slideState.slider,
+                  onChanged: (newVal) {
+                    state.slideState.updateSlider(newVal);
+                  }),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
                   children: <Widget>[
                     Checkbox(
-                      value: textModel.bold,
+                      value: state.textState.bold,
                       onChanged: (newVal) {
-                        textModel.bold = newVal;
+                        state.textState.bold = newVal;
                       },
                     ),
                     getBold(),
@@ -64,16 +61,16 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Row(
                   children: <Widget>[
                     Checkbox(
-                        value: textModel.italic,
+                        value: state.textState.italic,
                         onChanged: (newVal) {
-                          textModel.italic = newVal;
+                          state.textState.italic = newVal;
                         }),
                     Text(
                       'Italic',
                       style: getStyle(
-                        textModel.fontSize,
+                        state.textState.fontSize,
                         false,
-                        textModel.italic,
+                        state.textState.italic,
                       ),
                     ),
                   ],
@@ -101,8 +98,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Text(
       'Bold',
       style: getStyle(
-        Provider.of<TextState>(context, listen: false).fontSize,
-        Provider.of<TextState>(context, listen: false).bold,
+        Provider.of<AppState>(context, listen: false).textState.fontSize,
+        Provider.of<AppState>(context, listen: false).textState.bold,
         false,
       ),
     );

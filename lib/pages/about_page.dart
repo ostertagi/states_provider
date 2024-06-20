@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:provider/provider.dart';
 import 'package:states_bloc/pages/drawer_menu.dart';
+import 'package:states_bloc/providers/app_state.dart';
 import 'package:states_bloc/providers/text_state.dart';
 
 class AboutPage extends StatelessWidget {
@@ -10,8 +11,8 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextState>(
-      builder: (context, textModel, child) {
+    return Consumer<AppState>(
+      builder: (context, state, child) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('About'),
@@ -24,12 +25,14 @@ class AboutPage extends StatelessWidget {
               text: TextSpan(
                 text: text,
                 style: TextStyle(
-                    fontSize: textModel.fontSize,
+                    fontSize: state.textState.fontSize,
                     color: Colors.lightBlue,
-                    fontWeight:
-                        textModel.bold ? FontWeight.bold : FontWeight.normal,
-                    fontStyle:
-                        textModel.italic ? FontStyle.italic : FontStyle.normal),
+                    fontWeight: state.textState.bold
+                        ? FontWeight.bold
+                        : FontWeight.normal,
+                    fontStyle: state.textState.italic
+                        ? FontStyle.italic
+                        : FontStyle.normal),
               ),
             ),
           ),

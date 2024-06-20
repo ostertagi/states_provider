@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:states_bloc/providers/app_state.dart';
 
-class TextState extends ChangeNotifier {
+class TextState {
+  late AppState parent;
+
   late double _fontSize;
   late bool _bold;
   late bool _italic;
 
-  TextState() {
+  TextState(this.parent) {
     print("abdelghani from TExtMdeol");
     _fontSize = 12;
     _bold = false;
@@ -17,21 +19,24 @@ class TextState extends ChangeNotifier {
 
   set fontSize(value) {
     _fontSize = value;
-    notifyListeners();
+    // notifyListeners();
+    parent.notify();
   }
 
   get bold => _bold;
 
   set bold(value) {
     _bold = value;
-    notifyListeners();
+    // notifyListeners();
+    parent.notify();
   }
 
   get italic => _italic;
 
   set italic(value) {
     _italic = value;
-    notifyListeners();
+    // notifyListeners();
+    parent.notify();
   }
 }
 
